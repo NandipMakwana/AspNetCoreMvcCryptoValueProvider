@@ -15,6 +15,7 @@ namespace AspNetCoreMvcCryptoValueProvider.Controllers
             return View();
         }
 
+        //[CryptoValueProvider]
         public IActionResult About(string id)
         {
             ViewData["Message"] = "Your application description page.";

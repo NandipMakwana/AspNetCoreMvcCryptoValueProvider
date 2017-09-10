@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetCoreMvcCryptoValueProvider
@@ -10,7 +7,13 @@ namespace AspNetCoreMvcCryptoValueProvider
     {
         public Task CreateValueProviderAsync(ValueProviderFactoryContext context)
         {
-            context.ValueProviders.Add(new CryptoValueProvider(CryptoBindingSource.Crypto));
+            var paramsProtector = (CryptoParamsProtector)context.ActionContext.HttpContext
+                .RequestServices.GetService(typeof(CryptoParamsProtector));
+
+            context.ValueProviders.Add(new CryptoValueProvider(CryptoBindingSource.Crypto
+                , paramsProtector
+                , context.ActionContext.RouteData.Values["id"]?.ToString()));
+
             return Task.CompletedTask;
         }
     }
