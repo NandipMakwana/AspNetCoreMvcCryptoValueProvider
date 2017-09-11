@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Example 2 - Crypto values combined with visible values";
+}
+<h3>@ViewData["Title"]</h3>
+<table class="table table-bordered" style="width:500px;">
+    <tr>
+        <th>secretPersonId</th>
+        <td>@ViewBag.secretPersonId</td>
+    </tr>
+    <tr>
+        <th>secretParam2</th>
+        <td>@ViewBag.secretParam2</td>
+    </tr>
+    <tr>
+        <th>person.FirstName</th>
+        <td>@ViewBag.person.FirstName</td>
+    </tr>
+    <tr>
+        <th>person.LastName</th>
+        <td>@ViewBag.person.LastName</td>
+    </tr>
+</table>

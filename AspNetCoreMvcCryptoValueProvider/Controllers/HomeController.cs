@@ -10,29 +10,37 @@ namespace AspNetCoreMvcCryptoValueProvider.Controllers
 {
     public class HomeController : Controller
     {
+        CryptoParamsProtector _protector;
+
+        public HomeController(CryptoParamsProtector protector)
+        {
+            _protector = protector;
+        }
+
         public IActionResult Index()
         {
-            return View();
-        }
+            #region Example 1 - All Parameters
+            var paramDictionary = new Dictionary<string, string>();
+            paramDictionary.Add("param1", 1234.ToString());
+            paramDictionary.Add("param2", "Hello World!");
+            ViewBag.encryptedRouteParam1 = _protector.EncryptParamDictionary(paramDictionary);
+            #endregion
 
-        //[CryptoValueProvider]
-        public IActionResult About(string id)
-        {
-            ViewData["Message"] = "Your application description page.";
+            #region Example 2 - Crypto values combined with visible values
+            var person = new Person()
+            {
+                PersonId = 1234,
+                FirstName = "Nandip",
+                LastName = "Makwana"
+            };
 
-            return View();
-        }
+            paramDictionary = new Dictionary<string, string>();
+            paramDictionary.Add("secretPersonId", person.PersonId.ToString());
+            paramDictionary.Add("secretParam2", 5678.ToString());
+            ViewBag.encryptedRouteParam2 = _protector.EncryptParamDictionary(paramDictionary);            
+            #endregion
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(person);
         }
     }
 }
