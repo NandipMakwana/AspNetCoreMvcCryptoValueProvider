@@ -38,7 +38,7 @@ public class HomeController : Controller
 </pre>
 <h4>3. Use encrypted route parameter to generate link</h4>
 <pre>
-&#x3C;a asp-controller="demo" asp-action="example1" asp-route-id="@Html.Raw("@ViewBag.encryptedRouteParam1")"&#x3E;&#x3C;h4&#x3E;Example 1 Demo&#x3C;/h4&#x3E;&#x3C;/a&#x3E;
+&#x3C;a asp-controller="demo" asp-action="example1" <span style="border-bottom:1px dotted;">asp-route-id="@Html.Raw("@ViewBag.encryptedRouteParam1")"</span>&#x3E;&#x3C;h4&#x3E;Example 1 Demo&#x3C;/h4&#x3E;&#x3C;/a&#x3E;
 </pre>
 <a asp-controller="demo" asp-action="example1" asp-route-id="@ViewBag.encryptedRouteParam1"><h3>Example 1 demo</h3></a>
 <hr />
@@ -88,7 +88,7 @@ public class HomeController : Controller
 </pre>
 <h4>3. Use encrypted route parameter with other request parameter for e.g. HTML form</h4>
 <pre>
-&#x3C;form asp-controller="demo" asp-action="example2" asp-route-id="@Html.Raw("@ViewBag.encryptedRouteParam2")" method="post"&#x3E;
+&#x3C;form asp-controller="demo" asp-action="example2" <span style="border-bottom:1px dotted;">asp-route-id="@Html.Raw("@ViewBag.encryptedRouteParam2")"</span> method="post"&#x3E;
     &#x3C;input asp-for="FirstName" /&#x3E;
     &#x3C;input asp-for="LastName" /&#x3E;
     &#x3C;input type="submit" /&#x3E;
