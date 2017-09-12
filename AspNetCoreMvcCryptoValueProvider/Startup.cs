@@ -19,7 +19,10 @@ namespace AspNetCoreMvcCryptoValueProvider
         {
             services.AddScoped(typeof(CryptoParamsProtector));
 
-            services.AddMvc(mvc => mvc.ValueProviderFactories.Add(new CryptoValueProviderFactory()));
+            services.AddMvc(mvcOptions =>
+            {
+                mvcOptions.ValueProviderFactories.Add(new CryptoValueProviderFactory());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
